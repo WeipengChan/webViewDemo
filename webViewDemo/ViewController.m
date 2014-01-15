@@ -22,14 +22,31 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.webView.delegate = self;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BIDHJ-Ch02-Ex1" ofType:@"html"];
-    NSString * videoPath = [[NSBundle mainBundle]pathForResource:@"tlr2_h_640" ofType:@"m4v"];
-    videoPath = [@"file://localhost" stringByAppendingString:videoPath];
     
-    NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    fileContent = [fileContent stringByReplacingOccurrencesOfString:@"THESRCTOREPLACE" withString:videoPath];
+    //html5 标签
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BIDHJ-Ch02-Ex1" ofType:@"html"];
+//  
+//
+//    NSString * videoPath = [[NSBundle mainBundle]pathForResource:@"tlr2_h_640" ofType:@"m4v"];
+//    videoPath = [@"file://localhost" stringByAppendingString:videoPath];
+//    
+//    NSString *fileContent = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//    fileContent = [fileContent stringByReplacingOccurrencesOfString:@"THESRCTOREPLACE" withString:videoPath];
+//    [self.webView loadHTMLString:fileContent baseURL:nil];
+
     
-    [self.webView loadHTMLString:fileContent baseURL:nil];
+    
+    
+    //这个是网上的demo
+    NSString * path = [[NSBundle mainBundle] bundlePath];
+    NSURL * baseURL = [NSURL fileURLWithPath:path];
+    
+   //     NSString * htmlFile = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
+
+NSString * htmlFile = [[NSBundle mainBundle] pathForResource:@"jqueryDemo" ofType:@"html"];
+    NSString * htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:(NSUTF8StringEncoding) error:nil];
+    [self.webView loadHTMLString:htmlString baseURL:baseURL];
+
 }
 
 - (void)didReceiveMemoryWarning
